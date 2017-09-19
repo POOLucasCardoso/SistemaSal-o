@@ -1,5 +1,4 @@
 package POO;
-
 public class Contato {
 
 	private String email;
@@ -59,7 +58,4 @@ public class Contato {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	
-	
-
 }
