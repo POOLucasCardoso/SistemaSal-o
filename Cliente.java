@@ -6,7 +6,7 @@ public class Cliente extends Pessoa {
 
 		super(contatos, endereco, nome, cPF);
 
-		this.ehInadinplente = true;
+		this.ehInadinplente = false;
 
 	}
 
