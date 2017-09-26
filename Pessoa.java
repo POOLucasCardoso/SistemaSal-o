@@ -1,5 +1,3 @@
-package POO;
-
 public abstract class Pessoa {
 
 	public Contato contatos;

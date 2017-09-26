@@ -1,5 +1,3 @@
-package POO;
-
 public class Cliente extends Pessoa {
 
 	boolean ehInadinplente;

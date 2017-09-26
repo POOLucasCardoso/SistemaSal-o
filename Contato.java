@@ -1,4 +1,3 @@
-package POO;
 public class Contato {
 
 	private String email;

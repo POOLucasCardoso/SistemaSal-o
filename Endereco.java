@@ -1,5 +1,3 @@
-package POO;
-
 public class Endereco {
 
 	private String pais;
