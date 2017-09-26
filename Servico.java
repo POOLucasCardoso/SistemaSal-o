@@ -36,14 +36,43 @@ public class Servico {
 		this.produtosNecessario.add(produto);
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Servico other = (Servico) obj;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		return true;
+	}
+
 	public void removeProduto(String nome) throws NaoExisteException{
+		boolean boo = true;
 		for(int k = 0; k < this.produtosNecessario.size(); k++){
 			if(this.produtosNecessario.get(k).getNome().equals(nome)){
 				this.produtosNecessario.remove(this.produtosNecessario.get(k));
+				boo = false;
 				break;
 			}
 		}
-		throw new NaoExisteException("Não Existe esse Produto");
+		if(boo) {
+			throw new NaoExisteException("Não Existe esse Produto");
+		}
 	}
 	
 	public List<Produto> getProdutosNecessario(){

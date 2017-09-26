@@ -122,4 +122,124 @@ public class SistemaSalao {
 		}
 		throw new NaoExisteException("Não Existe");
 	} 
+	
+	public void removeCliente(String CPF) throws NaoExisteException{
+		
+		boolean boo = true;
+		
+		for(Cliente c : this.clientes) {
+			
+			if (c.getCPF().equals(CPF)){
+				
+				this.clientes.remove(c);
+				
+				boo = false;
+				
+				break;
+				
+			}
+			
+		}
+		
+		if (boo) {
+			
+			throw new NaoExisteException("Não existe nenhum cliente cadastrado com esse CPF");
+			
+		}
+		
+	}
+
+	public void removeFuncionario(String CPF) throws NaoExisteException {
+
+		boolean boo = true;
+
+		for (Funcionario f : this.fucionarios) {
+
+			if (f.getCPF().equals(CPF)) {
+
+				this.clientes.remove(f);
+
+				boo = false;
+
+				break;
+
+			}
+
+		}
+
+		if (boo) {
+
+			throw new NaoExisteException("Não existe nenhum funcionário cadastrado com esse CPF");
+
+		}
+
+	}
+	public void removeProduto(String nome,String marca) throws NaoExisteException {
+
+		boolean boo = true;
+
+		for (Produto p : this.produtos) {
+
+			if ((p.getNome()+p.getMarca()).equals(nome+marca)) {
+
+				this.clientes.remove(p);
+
+				boo = false;
+
+				break;
+
+			}
+
+		}
+
+		if (boo) {
+
+			throw new NaoExisteException("Não existe nenhum produto cadastrado dessa marca com este nome.");
+
+		}
+
+	}
+	
+	public void agendar(Apontamento apontamento) throws JaExisteException{
+		
+		for(Apontamento a : agenda) {
+			
+			if(a.equals(apontamento)) {
+				
+				throw new JaExisteException("Apontamento já agendado");
+				
+			}
+			
+		}
+		
+		this.agenda.add(apontamento);
+		
+	}
+	
+	public void desagendar(Apontamento apontamento) throws NaoExisteException {
+
+		boolean boo = true;
+
+		for (Apontamento a : this.agenda) {
+
+			if (a.equals(apontamento)) {
+
+				this.agenda.remove(a);
+
+				boo = false;
+
+				break;
+
+			}
+
+		}
+
+		if (boo) {
+
+			throw new NaoExisteException("Não existe nenhum apontamento como esse registrado.");
+
+		}
+
+	}
+	
 }
