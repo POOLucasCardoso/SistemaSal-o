@@ -4,37 +4,71 @@ public class SistemaSalao {
 	private List<Cliente> clientes;
 	private List<Produto> produtos;
 	private List<Funcionario> fucionarios;
+	private List<Apontamento> agenda;
 	
 	public SistemaSalao(){
-		this.clientes = new ArrayList();
-		this.produtos = new ArrayList();
-		this.fucionarios = new ArrayList();
-	}
-
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public List<Funcionario> getFucionarios() {
-		return fucionarios;
-	}
-
-	public void setFucionarios(List<Funcionario> fucionarios) {
-		this.fucionarios = fucionarios;
+		this.clientes = new ArrayList<Cliente>();
+		this.produtos = new ArrayList<Produto>();
+		this.fucionarios = new ArrayList<Funcionario>();
+		this.agenda = new ArrayList<Apontamento>();
 	}
 	
+	public int quantClientes(){
+		return this.clientes.size();
+	}
+	
+	public int quantProdutos(){
+		return this.produtos.size();
+	}
+	
+	public int quantFuncionarios(){
+		return this.fucionarios.size();
+	}
+	
+	public List<Cliente> quantClientesInad(){
+		List<Cliente> clientesInadiplente = new ArrayList<Cliente>();
+		for(int k = 0; k < this.clientes.size(); k++){
+			if(this.clientes.get(k).isEhInadinplente()){
+				clientesInadiplente.add(this.clientes.get(k));
+			}	
+		}
+		return clientesInadiplente;
+	}
+	
+	public List<Cliente> todosClientes(){
+		List<Cliente> todos = new ArrayList <Cliente>();
+		for(int k = 0; k < this.clientes.size(); k++){
+			todos.add(this.clientes.get(k));
+		}
+		return todos;
+	}
+	
+	public List<Produto> todosProdutos(){
+		List<Produto> todos = new ArrayList<Produto>();
+		for(int k = 0; k<this.produtos.size(); k++){
+			todos.add(this.produtos.get(k));
+		}
+		return todos;
+	}
+	
+	public List<Produto> produtosDeUmTipo(String tipo){
+		List<Produto> produtos = new ArrayList<Produto>();
+		for(int k = 0; k < this.produtos.size(); k++){
+			if(this.produtos.get(k).getTipo().equals(tipo)){
+				produtos.add(this.produtos.get(k));
+			}
+		}
+		return produtos;
+	}
+	
+	public List<Funcionario> todosfuncionarios(){
+		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+		for(int k = 0; k < this.fucionarios.size(); k++){
+			funcionarios.add(this.fucionarios.get(k));
+		}
+		return funcionarios;
+	}
+ 	
 	public void cadastraCliente(Cliente cliente)throws JaExisteException{
 			for(int k = 0; k<this.clientes.size(); k++){
 				if(this.clientes.get(k).equals(cliente)){
@@ -88,7 +122,4 @@ public class SistemaSalao {
 		}
 		throw new NaoExisteException("Não Existe");
 	} 
-	
-	
-
 }
