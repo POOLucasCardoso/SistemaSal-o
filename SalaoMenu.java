@@ -1,83 +1,108 @@
 import javax.swing.JOptionPane;
 public class SalaoMenu {
 	public static void main(String args[]){
-		SistemaSalao sistem = new SistemaSalao();
-		boolean sair = true;
-		while(sair){
-			System.out.println("1.Cadastrar o Cliente\n"
-					+ "2.Cadastra o Produto\n"
-					+ "3.Cadastra o Funcionario\n"
-					+ "4.Pesquisar o Cliente\n"
-					+ "5.Pesquisar o Produto\n"
-					+ "6.Pesquisar o Funcionario\n"
-					+ "7.Pesquisar o Produto pelo Tipo");
-			String opcao = JOptionPane.showInputDialog("Informe uma das Opções: ");
-			int opcaoInt = Integer.parseInt(opcao);
-			if(opcaoInt == 1){
-				String pais = JOptionPane.showInputDialog("Informe o Pais do seu Cliente: ");
-				String estado = JOptionPane.showInputDialog("Informe o estado do seu Cliente: ");
-				String cidade = JOptionPane.showInputDialog("Informe a cidade do seu Cliente: ");
-				String bairo = JOptionPane.showInputDialog("Informe o bairro do seu Cliente: ");
-				String rua = JOptionPane.showInputDialog("Informe a rua do seu Cliente: ");
-				String numero = JOptionPane.showInputDialog("Informe o numero da casa do seu Cliente: ");
-				String CEP = JOptionPane.showInputDialog("Informe o CEP da cidade do seu Cliente: ");
-				Endereco endereco = new Endereco(pais, estado, cidade, bairo, rua, numero, CEP);
-				String email = JOptionPane.showInputDialog("Informe o email do seu Cliente: ");
-				String numeroContato = JOptionPane.showInputDialog("Informe o numero para contato do seu Cliente: ");
-				Contato contato = new Contato(email,numeroContato);
-				String nome = JOptionPane.showInputDialog("Informe o nome do seu Cliente: ");
-				String CPF = JOptionPane.showInputDialog("Informe o CPF do seu Cliente: ");
-				Cliente cliente = new Cliente(contato, endereco, nome, CPF);
-				try{
-					sistem.cadastraCliente(cliente);
+		
+		SistemaSalao system = new SistemaSalao();
+
+	   /*1.Cadastrar o Cliente
+		*2.Pesquisar Cliente
+		*3.Remover Cliente
+		*4.
+		*/
+		
+		String opcao = JOptionPane.showInputDialog("Informe uma das Opções:");
+		
+		String cpf = "";
+		String nome = "";
+		Cliente cliente = null;
+		
+		while(true){
+			
+			switch(opcao) {
+			
+			case("1"):
+				
+				nome = JOptionPane.showInputDialog("Por favor, informe o nome do cliente no campo abaixo.");
+				String email = JOptionPane.showInputDialog("Informe o e-mail de "+nome+":");
+				String numero = JOptionPane.showInputDialog("Informe o celular de "+nome+":");
+				Contato contato = new Contato(email,numero);
+				String cidade = JOptionPane.showInputDialog("Informe a cidade onde "+nome+" mora:");
+				String bairro = JOptionPane.showInputDialog("Informe o bairro onde "+nome+" mora:");
+				String rua = JOptionPane.showInputDialog("Informe a rua onde "+nome+" mora:");
+				numero = JOptionPane.showInputDialog("Informe o número da casa de "+nome+":");
+				String cep = JOptionPane.showInputDialog("Informe o CEP de"+nome+":");
+				String estado = JOptionPane.showInputDialog("Informe o estado onde "+nome+" mora:");
+				String pais = JOptionPane.showInputDialog("Informe o país de"+nome+":");
+				Endereco endereco = new Endereco(pais,estado,cidade,bairro,rua,numero,cep);
+				cpf = JOptionPane.showInputDialog("Informe o CPF de"+nome+":");
+				cliente = new Cliente(contato,endereco,nome,cpf);
+				
+				try {
+					
+					system.cadastraCliente(cliente);
+					
+					JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+					
+				}catch(JaExisteException JEe){
+					
+					JOptionPane.showMessageDialog(null, JEe.getMessage());
+					
 				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, e.getMessage());
+					
+					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, por favor, tente novamente");
+					
 				}
-			}
-			else if(opcaoInt == 2){
-				String marca = JOptionPane.showInputDialog("Informe a marca do Produto: ");
-				String tipo = JOptionPane.showInputDialog("Informe o tipo do Produto: ");
-				String nome = JOptionPane.showInputDialog("Informe o nome do seu Produto: ");
-				Produto produto = new Produto(marca, tipo, nome);
-				try{
-					sistem.cadastraProduto(produto);
-				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, e.getMessage());
+				
+			case("2"):
+				
+				nome = JOptionPane.showInputDialog("Qual o nome do cliente que desejas pesquisar?");
+				
+				cpf = JOptionPane.showInputDialog("Qual o CPF desse cliente?");
+				
+				try {
+			
+					cliente = system.pesquisaCliente(nome, cpf);
+					
+					JOptionPane.showMessageDialog(null, cliente.toString());
+
+					int pesquisaC = JOptionPane.showConfirmDialog(null, "Ele(a) é inadimplente?");
+
+					if (pesquisaC == 0) { system.atualizarCliente(cliente); }
+						
+				}catch(NaoExisteException NEe){
+					
+					JOptionPane.showMessageDialog(null, NEe.getMessage());
+					
+				}catch(Exception e) {
+					
+					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+					
 				}
-			}
-			else if(opcaoInt == 3){
-				String pais = JOptionPane.showInputDialog("Informe o Pais do seu Funcionario: ");
-				String estado = JOptionPane.showInputDialog("Informe o estado do seu Funcionario: ");
-				String cidade = JOptionPane.showInputDialog("Informe a cidade do seu Funcionario: ");
-				String bairo = JOptionPane.showInputDialog("Informe o bairro do seu Funcionario: ");
-				String rua = JOptionPane.showInputDialog("Informe a rua do seu Funcionario: ");
-				String numero = JOptionPane.showInputDialog("Informe o numero da casa do seu Funcionario: ");
-				String CEP = JOptionPane.showInputDialog("Informe o CEP da cidade do seu Funcionario: ");
-				Endereco endereco = new Endereco(pais, estado, cidade, bairo, rua, numero, CEP);
-				String email = JOptionPane.showInputDialog("Informe o email do seu Funcionario: ");
-				String numeroContato = JOptionPane.showInputDialog("Informe o numero para contato do seu Funcionario: ");
-				Contato contato = new Contato(email,numeroContato);
-				String tipo = JOptionPane.showInputDialog("Informe o tipo de Funcionario: ");
-				String nome = JOptionPane.showInputDialog("Informe o nome do seu Cliente: ");
-				String CPF = JOptionPane.showInputDialog("Informe o CPF do seu Cliente: ");
-				Funcionario func = new Funcionario(tipo, nome, CPF, contato, endereco);
-				try{
-					sistem.cadastraFuncionario(func);
-				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, e.getMessage());
+				
+			case("3"):
+				
+				nome = JOptionPane.showInputDialog("Qual o nome do cliente que desejas remover?");
+			
+				cpf = JOptionPane.showInputDialog("Qual o CPF desse cliente?");
+				
+				try {
+					
+					system.removeCliente(nome, cpf);
+						
+				}catch(NaoExisteException NEe){
+					
+					JOptionPane.showMessageDialog(null, NEe.getMessage());
+					
+				}catch(Exception e) {
+					
+					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+					
 				}
+			
 			}
-			else if(opcaoInt == 4){
-				String nome = JOptionPane.showInputDialog("Informe o nome do Cliente que voce deseja pesquisar: ");
-				String cpf = JOptionPane.showInputDialog("Informe o CPF do Cliente que voce deseja pesquisar: ");
-				Cliente clientePesquisado = null;
-				try{
-					clientePesquisado = sistem.pesquisaCliente(nome, cpf);
-				}catch (Exception e){
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
-				JOptionPane.showMessageDialog(null,"Nome: "+clientePesquisado.getNome()+"CPF: "+clientePesquisado.getCPF()+clientePesquisado.getContatos().toString()+clientePesquisado.getEndereco().toString());
-			}
+
 		}
+		
 	}
+	
 }

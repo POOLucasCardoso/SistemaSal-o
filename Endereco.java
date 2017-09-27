@@ -100,4 +100,12 @@ public class Endereco {
 	public void setBairo(String bairo) {
 		this.bairo = bairo;
 	}
+	@Override
+	public String toString() {
+		return "Endereco: \n pais: " + pais + ", estado: " + estado + ",\n cidade: " + cidade + ", bairo: " + bairo +
+				", rua=" + rua + ", numero: " + numero + ", CEP: " + CEP + "";
+	}
+	
+	
+	
 }

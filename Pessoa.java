@@ -53,6 +53,7 @@ public abstract class Pessoa {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((CPF == null) ? 0 : CPF.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -70,7 +71,23 @@ public abstract class Pessoa {
 				return false;
 		} else if (!CPF.equals(other.CPF))
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "nome: " + nome 
+			+ ", CPF: " + CPF
+			+ ", contatos:\n " + contatos.toString() 
+			+ ", endereco:\n " + endereco.toString();
+		
+	}
+	
+	
 
 }

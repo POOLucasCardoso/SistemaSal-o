@@ -17,5 +17,10 @@ public class Funcionario extends Pessoa{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	@Override
+	public String toString() {
+		return "Funcionario:\n Tipo: " + tipo + ", " + super.toString();
+	}
 	
 }

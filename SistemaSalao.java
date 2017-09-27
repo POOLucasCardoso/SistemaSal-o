@@ -123,13 +123,13 @@ public class SistemaSalao {
 		throw new NaoExisteException("Não Existe");
 	} 
 	
-	public void removeCliente(String CPF) throws NaoExisteException{
+	public void removeCliente(String CPF,String nome) throws NaoExisteException{
 		
 		boolean boo = true;
 		
 		for(Cliente c : this.clientes) {
 			
-			if (c.getCPF().equals(CPF)){
+			if (c.getCPF().equals(CPF)&&c.getNome().equals(nome)){
 				
 				this.clientes.remove(c);
 				
@@ -149,13 +149,13 @@ public class SistemaSalao {
 		
 	}
 
-	public void removeFuncionario(String CPF) throws NaoExisteException {
+	public void removeFuncionario(String CPF,String nome) throws NaoExisteException {
 
 		boolean boo = true;
 
 		for (Funcionario f : this.fucionarios) {
 
-			if (f.getCPF().equals(CPF)) {
+			if (f.getCPF().equals(CPF)&&f.getNome().equals(nome)) {
 
 				this.clientes.remove(f);
 
@@ -240,6 +240,20 @@ public class SistemaSalao {
 
 		}
 
+	}
+	
+	public void atualizarCliente(Cliente cliente) {
+		
+		for(Cliente c : clientes) {
+			
+			if(c.equals(cliente)) {
+				
+				c = cliente;
+				
+			}
+			
+		}
+		
 	}
 	
 }

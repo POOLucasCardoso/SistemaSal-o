@@ -57,4 +57,10 @@ public class Contato {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
+	@Override
+	public String toString() {
+		return "Contato: \n email:" + email + ", numero:" + numero;
+	}
+	
 }
