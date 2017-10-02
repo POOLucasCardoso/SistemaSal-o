@@ -3,23 +3,29 @@ public class Produto {
 	private String marca;
 	private String tipo;
 	private String nome;
+	private double preco;
 	
-	public Produto(String marca, String tipo, String nome){
+	public Produto(String marca, String tipo, String nome, double preco){
 		this.marca = marca;
 		this.tipo = tipo;
 		this.nome = nome;
+		this.preco = preco;
 	}
 	
 	public String getMarca(){
-		return this.marca;
+		return marca;
 	}
 	
 	public String getTipo(){
-		return this.tipo;
+		return tipo;
 	}
 	
 	public String getNome(){
-		return this.nome;
+		return nome;
+	}
+	
+	public double getPreco() {
+		return preco;
 	}
 	
 	public void setMarca(String marca){
@@ -28,6 +34,14 @@ public class Produto {
 	
 	public void setTipo(String tipo){
 		this.tipo = tipo;
+	}
+	
+	public void setNome(String nome){
+		this.nome = nome;
+	}
+	
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	
 	@Override
@@ -61,10 +75,9 @@ public class Produto {
 		return true;
 	}
 
-	public void setNome(String nome){
-		this.nome = nome;
+	@Override
+	public String toString() {
+		return "Produto:\n nome: " + nome + ", marca: " + marca + ", tipo: " + tipo + ", preco: " + preco + "]";
 	}
 	
-	
-
 }

@@ -96,9 +96,9 @@ public class SistemaSalao {
 		this.fucionarios.add(funcionario);
 	}
 	
-	public Cliente pesquisaCliente(String nome, String cpf) throws NaoExisteException{
+	public Cliente pesquisaCliente(String cpf) throws NaoExisteException{
 		for(int k = 0; k<this.clientes.size(); k++){
-			if((this.clientes.get(k).getNome().equals(nome) && this.clientes.get(k).getCPF().equals(cpf))){
+			if(this.clientes.get(k).getCPF().equals(cpf)){
 				return this.clientes.get(k);
 			}
 		}
@@ -114,22 +114,22 @@ public class SistemaSalao {
 		throw new NaoExisteException("Não Existe");
 	}
 	
-	public Produto pesquisaProduto(String nome) throws NaoExisteException{
+	public Produto pesquisaProduto(String nome, String marca) throws NaoExisteException{
 		for(int k = 0; k < this.produtos.size(); k++){
-			if(this.produtos.get(k).getNome().equals(nome)){
+			if(this.produtos.get(k).getNome().equals(nome)&&this.produtos.get(k).getMarca().equals(marca)){
 				return this.produtos.get(k);
 			}
 		}
 		throw new NaoExisteException("Não Existe");
 	} 
 	
-	public void removeCliente(String CPF,String nome) throws NaoExisteException{
+	public void removeCliente(String CPF) throws NaoExisteException{
 		
 		boolean boo = true;
 		
 		for(Cliente c : this.clientes) {
 			
-			if (c.getCPF().equals(CPF)&&c.getNome().equals(nome)){
+			if (c.getCPF().equals(CPF)){
 				
 				this.clientes.remove(c);
 				
@@ -149,13 +149,13 @@ public class SistemaSalao {
 		
 	}
 
-	public void removeFuncionario(String CPF,String nome) throws NaoExisteException {
+	public void removeFuncionario(String CPF) throws NaoExisteException {
 
 		boolean boo = true;
 
 		for (Funcionario f : this.fucionarios) {
 
-			if (f.getCPF().equals(CPF)&&f.getNome().equals(nome)) {
+			if (f.getCPF().equals(CPF)) {
 
 				this.clientes.remove(f);
 

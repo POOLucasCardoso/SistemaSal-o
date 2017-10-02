@@ -60,7 +60,7 @@ public class Contato {
 
 	@Override
 	public String toString() {
-		return "Contato: \n email:" + email + ", numero:" + numero;
+		return "email:" + email + ", numero:" + numero;
 	}
 	
 }
