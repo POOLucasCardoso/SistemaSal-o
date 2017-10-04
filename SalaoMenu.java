@@ -13,9 +13,15 @@ public class SalaoMenu {
 		*7.Adicionar produto
 		*8.Pesquisar produto
 		*9.Remover produto
+		*10.Adicionar serviço
+		*11.Pesquisar serviço
+		*12.Remover serviço
+		*13.Agendar
 		*/
 		
 		String opcao = JOptionPane.showInputDialog("Informe uma das Opções:");
+		
+		int opcao2 = -1;
 		
 		String cpf;
 		String nome;
@@ -35,6 +41,8 @@ public class SalaoMenu {
 		Cliente cliente;
 		Funcionario funcionario;
 		Produto produto;
+		Servico servico;
+		Apontamento apontamento;
 		
 		while(true){
 			
@@ -245,7 +253,7 @@ public class SalaoMenu {
 				
 			case("8"):
 				
-				nome = JOptionPane.showInputDialog("Qual o CPF do funcionário que desejas pesquisar?");
+				nome = JOptionPane.showInputDialog("Qual o nome do produto que desejas pesquisar?");
 				marca = JOptionPane.showInputDialog("Qual a marca desse produto:");
 
 				try {
@@ -289,6 +297,151 @@ public class SalaoMenu {
 
 				break;
 				
+			case("10"):
+				
+				tipo = JOptionPane.showInputDialog("Qual o tipo de serviço que desejas incluir?");
+				numero = JOptionPane.showInputDialog("Qual o preco sesse serviço?");
+				
+				try {
+					
+					preco = Double.parseDouble(numero);
+					
+					servico = new Servico(tipo,preco);
+					
+					opcao2 = JOptionPane.showConfirmDialog(null, "Desejas cadastrar algum produto nessessário a esse servoço?");
+					
+					while(opcao2==0){
+						
+						nome = JOptionPane.showInputDialog("Qual o nome do produto?");
+						marca = JOptionPane.showInputDialog("Qual a marca desse produto:");
+						
+						try {
+						
+						produto = system.pesquisaProduto(nome, marca);
+						
+						servico.addProduto(produto);
+						
+						}catch(NaoExisteException NEe) {
+							
+							JOptionPane.showMessageDialog(null, NEe.getMessage());
+							
+						}catch(JaExisteException JEe) {
+							
+							JOptionPane.showMessageDialog(null, JEe.getMessage());
+							
+						}catch(Exception e) {
+							
+							JOptionPane.showMessageDialog(null,"Ocorreu algum erro, por vavor, tente novamente.");
+							
+						}
+						
+						opcao2 = JOptionPane.showConfirmDialog(null, "Desejas cadastrar outro produto?");
+						
+					}
+					
+					system.cadastraServico(servico);
+					
+					JOptionPane.showMessageDialog(null, "Servico cadastrado com sucesso.");
+					
+				}catch(JaExisteException JEe) {
+					
+					JOptionPane.showMessageDialog(null, JEe.getMessage());
+					
+				}catch(NumberFormatException NFe){
+					
+					JOptionPane.showMessageDialog(null,"Preço inválido.");
+					
+				}catch(Exception e) {
+					
+					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, por vavor, tente novamente.");
+					
+				}
+				
+				break;
+				
+			case("11"):
+				
+				tipo = JOptionPane.showInputDialog("Qual o tipo de serviço que desejas pesquisar?");
+			
+				try {
+					
+					servico = system.pesquisaServico(tipo);
+					
+					JOptionPane.showMessageDialog(null,servico.toString());
+					
+				}catch(NaoExisteException NEe) {
+					
+					JOptionPane.showMessageDialog(null,NEe.getMessage());
+					
+				}catch(Exception e) {
+					
+					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, por vavor, tente novamente.");
+					
+				}
+				
+				break;
+				
+			case("12"):
+				
+				tipo = JOptionPane.showInputDialog("Qual o tipo de serviço que desejas excluir?");
+			
+				try {
+
+					system.removeServico(tipo);
+
+					JOptionPane.showInputDialog("Servico removido com sucesso.");
+
+				} catch (NaoExisteException NEe) {
+
+					JOptionPane.showMessageDialog(null, NEe.getMessage());
+
+				} catch (Exception e) {
+
+					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+
+				}
+
+				break;
+				
+			case("13"):
+				
+				try {
+					
+					nome = JOptionPane.showInputDialog("Qual a data do apontamento?");
+					numero = JOptionPane.showInputDialog("De que horas?");
+
+					cpf = JOptionPane.showInputDialog("Qual o CPF do cliente?");
+					
+					cliente = system.pesquisaCliente(cpf);
+					
+					cpf = JOptionPane.showInputDialog("Qual o CPF do funcionário responsável?");
+					
+					funcionario = system.pesquisaFuncionario(cpf);
+					
+					tipo = JOptionPane.showInputDialog("Qual o tipo de serviço que será realizado?");
+					
+					servico = system.pesquisaServico(tipo);
+					
+					apontamento = new Apontamento(nome,numero,cliente,funcionario,servico);
+					
+					system.agendar(apontamento);
+					
+				}catch(NaoExisteException NEe) {
+					
+					JOptionPane.showMessageDialog(null, NEe.getMessage());
+					
+				}catch(JaExisteException JEe) {
+					
+					JOptionPane.showMessageDialog(null, JEe.getMessage());
+					
+				} catch (Exception e) {
+
+					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+
+				}
+				
+				break;
+	
 			default:
 				
 				JOptionPane.showMessageDialog(null, "Não existe essa opção, por favor, escolha outra.");

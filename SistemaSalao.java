@@ -4,6 +4,7 @@ public class SistemaSalao {
 	private List<Cliente> clientes;
 	private List<Produto> produtos;
 	private List<Funcionario> fucionarios;
+	private List<Servico> servicos;
 	private List<Apontamento> agenda;
 	
 	public SistemaSalao(){
@@ -254,6 +255,50 @@ public class SistemaSalao {
 			
 		}
 		
+	}
+	
+	public void cadastraServico(Servico servico) throws JaExisteException{
+		for(int k = 0; k<this.servicos.size(); k++){
+			if(this.servicos.get(k).equals(servico)){
+				throw new JaExisteException("Serviço já Cadastrado");
+			}
+		}
+		this.servicos.add(servico);
+	}
+	
+	public Servico pesquisaServico(String tipo) throws NaoExisteException{
+		for(int k = 0; k < this.servicos.size(); k++){
+			if(this.servicos.get(k).getTipo().equals(tipo)){
+				return this.servicos.get(k);
+			}
+		}
+		throw new NaoExisteException("Não Existe");
+	} 
+	
+	public void removeServico(String tipo) throws NaoExisteException {
+
+		boolean boo = true;
+
+		for (Servico s: this.servicos) {
+
+			if (s.getTipo().equals(tipo)) {
+
+				this.clientes.remove(s);
+
+				boo = false;
+
+				break;
+
+			}
+
+		}
+
+		if (boo) {
+
+			throw new NaoExisteException("Não existe nenhum serviço cadastrado com este nome.");
+
+		}
+
 	}
 	
 }

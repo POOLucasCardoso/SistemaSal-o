@@ -78,5 +78,10 @@ public class Servico {
 	public List<Produto> getProdutosNecessario(){
 		return this.produtosNecessario;
 	}
+
+	@Override
+	public String toString() {
+		return "Servico:\n tipo: " + tipo + ", preco: " + preco + ",\n produtos necessários: " + produtosNecessario.toString() + "";
+	}
 	
 }
