@@ -192,7 +192,7 @@ public class SalaoMenu {
 				
 			case("6"):
 
-				cpf = JOptionPane.showInputDialog("Qual o CPF desse cliente?");
+				cpf = JOptionPane.showInputDialog("Qual o CPF desse funcionário?");
 				
 				try {
 					
