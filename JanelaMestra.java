@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class JanelaMestra extends JFrame implements ActionListener {
 
@@ -74,6 +75,11 @@ public class JanelaMestra extends JFrame implements ActionListener {
 		btnAgenda.addActionListener(this);
 		btnAgenda.setBounds(481, 11, 126, 39);
 		contentPane.add(btnAgenda);
+		
+		JLabel lblAa = new JLabel("");
+		lblAa.setIcon(null);
+		lblAa.setBounds(162, 53, 161, 114);
+		contentPane.add(lblAa);
 	}
 
 	@Override

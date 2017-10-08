@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class JanelaFuncionario extends JFrame {
 
@@ -19,13 +22,15 @@ public class JanelaFuncionario extends JFrame {
 	 */
 	public JanelaFuncionario(SistemaSalao system) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 440);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.PINK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JButton btnCadastra = new JButton("Cadastra");
+		btnCadastra.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		btnCadastra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -33,10 +38,11 @@ public class JanelaFuncionario extends JFrame {
 				
 			}
 		});
-		btnCadastra.setBounds(64, 52, 89, 23);
+		btnCadastra.setBounds(120, 76, 208, 54);
 		contentPane.add(btnCadastra);
 		
 		JButton btnRemove = new JButton("Remove");
+		btnRemove.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -61,10 +67,11 @@ public class JanelaFuncionario extends JFrame {
 				
 			}
 		});
-		btnRemove.setBounds(64, 141, 89, 23);
+		btnRemove.setBounds(120, 243, 208, 54);
 		contentPane.add(btnRemove);
 		
 		JButton btnPesquisa = new JButton("Pesquisa");
+		btnPesquisa.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		btnPesquisa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -89,10 +96,11 @@ public class JanelaFuncionario extends JFrame {
 				
 			}
 		});
-		btnPesquisa.setBounds(231, 102, 89, 23);
+		btnPesquisa.setBounds(120, 159, 208, 54);
 		contentPane.add(btnPesquisa);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -100,8 +108,13 @@ public class JanelaFuncionario extends JFrame {
 				
 			}
 		});
-		btnVoltar.setBounds(231, 187, 89, 23);
+		btnVoltar.setBounds(10, 367, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		JLabel label = new JLabel("ESCOLHA UMA OP\u00C7\u00C3O");
+		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		label.setBounds(108, 11, 264, 35);
+		contentPane.add(label);
 		setVisible(true);
 	}
 
