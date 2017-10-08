@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class JanelaMestra extends JFrame implements ActionListener {
 
@@ -42,35 +43,36 @@ public class JanelaMestra extends JFrame implements ActionListener {
 	public JanelaMestra() {
 		setTitle("Sistema Sal\u00E3o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 370, 300);
+		setBounds(100, 100, 739, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.PINK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		btnCliente = new JButton("Cliente");
 		btnCliente.addActionListener(this);
-		btnCliente.setBounds(10, 11, 334, 39);
+		btnCliente.setBounds(481, 61, 126, 39);
 		contentPane.add(btnCliente);
 		
 		btnFuncionario = new JButton("Funcion\u00E1rio");
 		btnFuncionario.addActionListener(this);
-		btnFuncionario.setBounds(10, 61, 334, 39);
+		btnFuncionario.setBounds(481, 111, 126, 39);
 		contentPane.add(btnFuncionario);
 		
 		btnProduto = new JButton("Produto");
 		btnProduto.addActionListener(this);
-		btnProduto.setBounds(10, 111, 334, 39);
+		btnProduto.setBounds(481, 161, 126, 39);
 		contentPane.add(btnProduto);
 		
 		btnServico = new JButton("Servi\u00E7o");
 		btnServico.addActionListener(this);
-		btnServico.setBounds(10, 161, 334, 39);
+		btnServico.setBounds(481, 211, 126, 39);
 		contentPane.add(btnServico);
 		
 		btnAgenda = new JButton("Agenda");
 		btnAgenda.addActionListener(this);
-		btnAgenda.setBounds(10, 211, 334, 39);
+		btnAgenda.setBounds(481, 11, 126, 39);
 		contentPane.add(btnAgenda);
 	}
 
