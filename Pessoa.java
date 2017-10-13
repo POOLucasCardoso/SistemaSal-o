@@ -1,12 +1,12 @@
 public abstract class Pessoa {
 
-	public Contato contatos;
+	private Contato contatos;
 	
-	public Endereco endereco;
+	private Endereco endereco;
 	
-	public String nome;
+	private String nome;
 	
-	public String CPF;
+	private String CPF;
 
 	public Pessoa(Contato contatos, Endereco endereco, String nome, String cPF) {
 		super();

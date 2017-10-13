@@ -1,6 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,6 +9,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class JanelaFuncionario extends JFrame {
 
 	private JPanel contentPane;
@@ -28,6 +26,7 @@ public class JanelaFuncionario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 		
 		JButton btnCadastra = new JButton("Cadastra");
 		btnCadastra.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -52,7 +51,7 @@ public class JanelaFuncionario extends JFrame {
 					
 					system.removeFuncionario(cpf);
 					
-					JOptionPane.showInputDialog("Funcionário removido com sucesso.");
+					JOptionPane.showMessageDialog(null,"Funcionário removido com sucesso.");
 						
 				}catch(NaoExisteException NEe){
 					
@@ -104,7 +103,7 @@ public class JanelaFuncionario extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				setVisible(false);
+				dispose();
 				
 			}
 		});

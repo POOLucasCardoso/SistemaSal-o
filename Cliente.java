@@ -1,6 +1,6 @@
 public class Cliente extends Pessoa {
 
-	boolean ehInadimplente;
+	private boolean ehInadimplente;
 
 	public Cliente(Contato contatos, Endereco endereco, String nome, String cPF) {
 
@@ -10,7 +10,7 @@ public class Cliente extends Pessoa {
 
 	}
 
-	public boolean isEhInadinplente() {
+	public boolean isEhInadimplente() {
 		return ehInadimplente;
 	}
 

@@ -22,7 +22,7 @@ public class Gravador {
 			String texto = null;
 			
 			do{
-				
+				System.out.println("-------->>>>>"+texto);
 				texto = leitor.readLine();
 				
 				if(texto != null){

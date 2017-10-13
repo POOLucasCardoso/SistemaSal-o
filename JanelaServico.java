@@ -1,6 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -8,7 +5,10 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class JanelaServico extends JFrame {
 
 	private JPanel contentPane;
@@ -25,6 +25,7 @@ public class JanelaServico extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 		
 		JButton button = new JButton("Cadastra");
 		button.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -42,6 +43,13 @@ public class JanelaServico extends JFrame {
 		contentPane.add(button_2);
 		
 		JButton button_3 = new JButton("Voltar");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				
+			}
+		});
 		button_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		button_3.setBounds(10, 367, 89, 23);
 		contentPane.add(button_3);

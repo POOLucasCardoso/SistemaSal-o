@@ -1,10 +1,10 @@
 
 public class Apontamento {
-	String data;
-	String hora;
-	Cliente cliente;
-	Funcionario funcionario;
-	Servico servico;
+	private String data;
+	private String hora;
+	private Cliente cliente;
+	private Funcionario funcionario;
+	private Servico servico;
 	
 	public Apontamento(String data, String hora, Cliente cliente, Funcionario funcionario, Servico servico) {
 		this.data = data;

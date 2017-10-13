@@ -1,9 +1,9 @@
 import java.util.List;
 import java.util.ArrayList;
 public class Servico {
-	String tipo;
-	double preco;
-	List<Produto> produtosNecessario;
+	private String tipo;
+	private double preco;
+	private List<Produto> produtosNecessario;
 	
 	public Servico(String tipo, double preco){
 		this.tipo = tipo;

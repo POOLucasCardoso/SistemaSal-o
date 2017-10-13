@@ -1,6 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class janela2 extends JFrame {
 
 	private JPanel contentPane;
@@ -42,6 +40,7 @@ public class janela2 extends JFrame {
 		setContentPane(contentPane);
 		setVisible(true);
 		contentPane.setLayout(null);
+		setResizable(false);
 		
 		cx1 = new JTextField();
 		cx1.setToolTipText("Nome:");
@@ -133,17 +132,17 @@ public class janela2 extends JFrame {
 					
 					system.cadastraCliente(cliente);
 					
-					JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+					JOptionPane.showMessageDialog(null,"Cliente cadastrado com sucesso.");
 					
-					setVisible(false);
+					dispose();
 					
 				}catch(JaExisteException JEe){
 					
-					JOptionPane.showMessageDialog(null, JEe.getMessage());
+					JOptionPane.showMessageDialog(null,JEe.getMessage());
 					
 				}catch(Exception e){
 					
-					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, por favor, tente novamente");
+					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, por favor, tente novamente");
 					
 				}
 				
@@ -158,7 +157,7 @@ public class janela2 extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				setVisible(false);
+				dispose();
 				
 			}
 		});

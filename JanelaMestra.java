@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -6,12 +5,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
-public class JanelaMestra extends JFrame implements ActionListener {
+@SuppressWarnings("serial")
+public class JanelaMestra extends JFrame implements ActionListener,WindowListener {
 
 	private JPanel contentPane;
 	JButton btnCliente;
@@ -43,13 +46,14 @@ public class JanelaMestra extends JFrame implements ActionListener {
 	 */
 	public JanelaMestra() {
 		setTitle("Sistema Sal\u00E3o");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(this);
 		setBounds(100, 100, 739, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.PINK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 		
 		btnCliente = new JButton("Cliente");
 		btnCliente.addActionListener(this);
@@ -73,13 +77,32 @@ public class JanelaMestra extends JFrame implements ActionListener {
 		
 		btnAgenda = new JButton("Agenda");
 		btnAgenda.addActionListener(this);
+		
+		JLabel lblAa = new JLabel("");
+		lblAa.setIcon(new ImageIcon(JanelaMestra.class.getResource("Logo.png")));
+		lblAa.setBounds(103, 5, 261, 261);
+		contentPane.add(lblAa);
 		btnAgenda.setBounds(481, 11, 126, 39);
 		contentPane.add(btnAgenda);
 		
-		JLabel lblAa = new JLabel("");
-		lblAa.setIcon(null);
-		lblAa.setBounds(162, 53, 161, 114);
-		contentPane.add(lblAa);
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+				
+				system.finaliza();
+				
+				}catch(Exception e){
+					
+					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, \nseus dados não serão salvos ao fechar o programa.");
+					
+				}
+				
+			}
+		});
+		btnSalvar.setBounds(634, 219, 89, 23);
+		contentPane.add(btnSalvar);
 	}
 
 	@Override
@@ -105,6 +128,52 @@ public class JanelaMestra extends JFrame implements ActionListener {
 			new InterfaceAgenda(system);
 			
 		}
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		try {
+		system.finaliza();
+		}catch(Exception a){}
+		
+		System.exit(-1);
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

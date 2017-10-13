@@ -1,7 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,6 +9,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class JanelaCliente extends JFrame{
 
 	private JPanel contentPane;
@@ -33,6 +31,7 @@ public class JanelaCliente extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setVisible(true);
+		setResizable(false);
 		
 		btnCadastra = new JButton("Cadastra");
 		btnCadastra.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -57,15 +56,15 @@ public class JanelaCliente extends JFrame{
 					
 					system.removeCliente(cpf);
 					
-					JOptionPane.showInputDialog("Cliente removido com sucesso.");
+					JOptionPane.showMessageDialog(null,"Cliente removido com sucesso.");
 						
 				}catch(NaoExisteException NEe){
 					
-					JOptionPane.showMessageDialog(null, NEe.getMessage());
+					JOptionPane.showMessageDialog(null,NEe.getMessage());
 					
 				}catch(Exception a) {
 					
-					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, tente novamente por favor.");
 					
 				}
 				
@@ -85,7 +84,7 @@ public class JanelaCliente extends JFrame{
 			
 					Cliente cliente = system.pesquisaCliente(cpf);
 					
-					JOptionPane.showMessageDialog(null, cliente.toString());
+					JOptionPane.showMessageDialog(null,cliente.toString());
 
 					int pesquisaC = JOptionPane.showConfirmDialog(null, "Ele(a) é inadimplente?");
 
@@ -93,11 +92,11 @@ public class JanelaCliente extends JFrame{
 						
 				}catch(NaoExisteException NEe){
 					
-					JOptionPane.showMessageDialog(null, NEe.getMessage());
+					JOptionPane.showMessageDialog(null,NEe.getMessage());
 					
 				}catch(Exception a) {
 					
-					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, tente novamente por favor.");
 					
 				}
 				
@@ -111,7 +110,7 @@ public class JanelaCliente extends JFrame{
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				setVisible(false);
+				dispose();
 				
 			}
 		});

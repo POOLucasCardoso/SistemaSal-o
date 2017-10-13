@@ -1,24 +1,16 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.JEditorPane;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.DropMode;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class janela1 extends JFrame {
 
 	private JPanel contentPane;
@@ -155,7 +147,7 @@ public class janela1 extends JFrame {
 					
 					system.cadastraFuncionario(funcionario);
 					
-					JOptionPane.showInputDialog("funcionario cadastrado com sucesso");
+					JOptionPane.showMessageDialog(null,"funcionario cadastrado com sucesso");
 					
 					setVisible(false);
 					
