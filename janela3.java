@@ -25,7 +25,7 @@ public class janela3 extends JFrame {
 	 */
 	public janela3(SistemaSalao system) {
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 495, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.PINK);

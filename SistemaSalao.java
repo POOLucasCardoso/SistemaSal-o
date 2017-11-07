@@ -8,7 +8,7 @@ public class SistemaSalao {
 	private List<Produto> produtos;
 	private List<Funcionario> funcionarios;
 	private List<Servico> servicos;
-	LinkedList<Apontamento> agenda;
+	public  LinkedList<Apontamento> agenda;
 	private Gravador file;
 
 	public SistemaSalao() {
@@ -150,7 +150,7 @@ public class SistemaSalao {
 		return this.funcionarios.size();
 	}
 
-	public List<Cliente> quantClientesInad() {
+	public List<Cliente> clientesInad() {
 		List<Cliente> clientesInadiplente = new ArrayList<Cliente>();
 		for (int k = 0; k < this.clientes.size(); k++) {
 			if (this.clientes.get(k).isEhInadimplente()) {
@@ -160,18 +160,18 @@ public class SistemaSalao {
 		return clientesInadiplente;
 	}
 
-	public List<Cliente> todosClientes() {
-		List<Cliente> todos = new ArrayList<Cliente>();
+	public Cliente[] todosClientes() {
+		Cliente[] todos = new Cliente[quantClientes()];
 		for (int k = 0; k < this.clientes.size(); k++) {
-			todos.add(this.clientes.get(k));
+			todos[k] = this.clientes.get(k);
 		}
 		return todos;
 	}
 
-	public List<Produto> todosProdutos() {
-		List<Produto> todos = new ArrayList<Produto>();
+	public Produto[] todosProdutos() {
+		Produto[] todos = new Produto[quantProdutos()];
 		for (int k = 0; k < this.produtos.size(); k++) {
-			todos.add(this.produtos.get(k));
+			todos[k] = this.produtos.get(k);
 		}
 		return todos;
 	}
@@ -186,12 +186,12 @@ public class SistemaSalao {
 		return produtos;
 	}
 
-	public List<Funcionario> todosfuncionarios() {
-		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+	public Funcionario[] todosFuncionarios() {
+		Funcionario[] todos = new Funcionario[quantFuncionarios()];
 		for (int k = 0; k < this.funcionarios.size(); k++) {
-			funcionarios.add(this.funcionarios.get(k));
+			todos[k] = this.funcionarios.get(k);
 		}
-		return funcionarios;
+		return todos;
 	}
 
 	public void cadastraCliente(Cliente cliente) throws JaExisteException {
@@ -227,7 +227,7 @@ public class SistemaSalao {
 				return this.clientes.get(k);
 			}
 		}
-		throw new NaoExisteException("Não existe");
+		throw new NaoExisteException("Não existe este cliente");
 	}
 
 	public Funcionario pesquisaFuncionario(String cpf) throws NaoExisteException {
@@ -236,7 +236,7 @@ public class SistemaSalao {
 				return this.funcionarios.get(k);
 			}
 		}
-		throw new NaoExisteException("Não Existe");
+		throw new NaoExisteException("Não Existe este funcionário");
 	}
 
 	public Produto pesquisaProduto(String nome, String marca) throws NaoExisteException {
@@ -245,7 +245,7 @@ public class SistemaSalao {
 				return this.produtos.get(k);
 			}
 		}
-		throw new NaoExisteException("Não Existe");
+		throw new NaoExisteException("Não Existe este produto");
 	}
 
 	public void removeCliente(String CPF) throws NaoExisteException {
@@ -428,11 +428,13 @@ public class SistemaSalao {
 
 	public void finaliza() throws IOException {
 
-		String texto = "";
+		String texto;
 
 		LinkedList<String> clientes = new LinkedList<String>();
 
 		for (Cliente c : this.clientes) {
+			
+			texto = "";
 			
 			texto += c.getContatos().getEmail() + "#";
 			texto += c.getContatos().getNumero() + "#";
@@ -456,17 +458,17 @@ public class SistemaSalao {
 
 			}
 
-			clientes.add(texto);
+			clientes.add(texto + "\n");
 
 		}
 
 		LinkedList<String> funcionarios = new LinkedList<String>();
 
-		texto = "";
-
 		for (Funcionario f : this.funcionarios) {
+			
+			texto = "";
 
-			texto += f.getTipo();
+			texto += f.getTipo() + "#";
 			texto += f.getNome() + "#";
 			texto += f.getCPF() + "#";
 			texto += f.getContatos().getEmail() + "#";
@@ -477,7 +479,7 @@ public class SistemaSalao {
 			texto += f.getEndereco().getBairo() + "#";
 			texto += f.getEndereco().getRua() + "#";
 			texto += f.getEndereco().getNumero() + "#";
-			texto += f.getEndereco().getCEP() + "#";
+			texto += f.getEndereco().getCEP() + "\n";
 
 			funcionarios.add(texto);
 
@@ -485,14 +487,14 @@ public class SistemaSalao {
 
 		LinkedList<String> produtos = new LinkedList<String>();
 
-		texto = "";
-
 		for (Produto p : this.produtos) {
+			
+			texto = "";
 
 			texto += p.getMarca() + "#";
 			texto += p.getTipo() + "#";
 			texto += p.getNome() + "#";
-			texto += p.getPreco();
+			texto += p.getPreco() + "\n";
 
 			produtos.add(texto);
 
@@ -500,9 +502,9 @@ public class SistemaSalao {
 
 		LinkedList<String> servicos = new LinkedList<String>();
 
-		texto = "";
-
 		for (Servico s : this.servicos) {
+			
+			texto = "";
 
 			texto += s.getTipo() + "#";
 			texto += s.getPreco() + "#";
@@ -514,21 +516,21 @@ public class SistemaSalao {
 
 			}
 
-			servicos.add(texto);
+			servicos.add(texto+"\n");
 
 		}
 
 		LinkedList<String> agenda = new LinkedList<String>();
 
-		texto = "";
-
 		for (Apontamento a : this.agenda) {
+			
+			texto = "";
 
 			texto += a.getCliente().getCPF() + "#";
 			texto += a.getFuncionario().getCPF() + "#";
 			texto += a.getServico().getTipo() + "#";
 			texto += a.getData() + "#";
-			texto += a.getHora() + "#";
+			texto += a.getHora() + "\n";
 
 			agenda.add(texto);
 
@@ -548,6 +550,20 @@ public class SistemaSalao {
 
 		}
 
+	}
+	
+	public String[] nomeServicos() {
+		
+		String[] texto = new String[this.servicos.size()];
+		
+		for(int i = 0; i<this.servicos.size(); i++) {
+			
+			texto[i]= this.servicos.get(i).getTipo(); 
+			
+		}
+		
+		return texto;
+		
 	}
 
 }

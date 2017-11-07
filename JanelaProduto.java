@@ -71,6 +71,30 @@ public class JanelaProduto extends JFrame {
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("Remove");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String nome = JOptionPane.showInputDialog("Qual o nome do produto?");
+				String marca = JOptionPane.showInputDialog("Qual a marca desse produto:");
+
+				try {
+
+					system.removeProduto(nome, marca);
+
+					JOptionPane.showInputDialog("Produto removido com sucesso.");
+
+				} catch (NaoExisteException NEe) {
+
+					JOptionPane.showMessageDialog(null, NEe.getMessage());
+
+				} catch (Exception a) {
+
+					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+
+				}
+				
+			}
+		});
 		button_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		button_2.setBounds(120, 243, 208, 54);
 		contentPane.add(button_2);

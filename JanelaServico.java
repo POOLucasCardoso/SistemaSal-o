@@ -4,6 +4,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,16 +30,83 @@ public class JanelaServico extends JFrame {
 		setResizable(false);
 		
 		JButton button = new JButton("Cadastra");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new janela5(system);
+			}
+		});
 		button.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		button.setBounds(120, 76, 208, 54);
 		contentPane.add(button);
 		
 		JButton button_1 = new JButton("Pesquisa");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String tipo = JOptionPane.showInputDialog("Qual o tipo de serviço que desejas pesquisar?");
+				
+				try {
+					
+					Servico servico = system.pesquisaServico(tipo);
+					
+					JOptionPane.showMessageDialog(null,servico.toString());
+					
+					int confirm = JOptionPane.showConfirmDialog(null, "Desejas adicionar um produto necessário ao servico?");
+					
+					while(confirm == 0) {
+						
+						String nome = JOptionPane.showInputDialog("Qual o nome do produto que desejas adicionar?");
+						
+						String marca = JOptionPane.showInputDialog("Qual a marca desse produto?");
+						
+						Produto produto = system.pesquisaProduto(nome, marca);
+						
+						servico.addProduto(produto);
+						
+						confirm = JOptionPane.showConfirmDialog(null, "Desejas adicionar um outro produto?");
+						
+					}
+					
+				}catch(NaoExisteException NEe) {
+					
+					JOptionPane.showMessageDialog(null,NEe.getMessage());
+					
+				}catch(Exception a) {
+					
+					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, por vavor, tente novamente.");
+					
+				}
+				
+			}
+		});
 		button_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		button_1.setBounds(120, 159, 208, 54);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("Remove");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String tipo = JOptionPane.showInputDialog("Qual o tipo de serviço que desejas excluir?");
+				
+				try {
+
+					system.removeServico(tipo);
+
+					JOptionPane.showInputDialog("Servico removido com sucesso.");
+
+				} catch (NaoExisteException NEe) {
+
+					JOptionPane.showMessageDialog(null, NEe.getMessage());
+
+				} catch (Exception a) {
+
+					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+
+				}
+				
+			}
+		});
 		button_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		button_2.setBounds(120, 243, 208, 54);
 		contentPane.add(button_2);

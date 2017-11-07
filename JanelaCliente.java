@@ -122,5 +122,4 @@ public class JanelaCliente extends JFrame{
 		lblEscolhaUmaOpo.setBounds(108, 11, 264, 35);
 		contentPane.add(lblEscolhaUmaOpo);
 	}
-
 }

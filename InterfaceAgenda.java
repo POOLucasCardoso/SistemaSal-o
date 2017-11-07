@@ -10,6 +10,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.JToggleButton;
 
 @SuppressWarnings("serial")
 public class InterfaceAgenda extends JFrame {
@@ -54,9 +59,22 @@ public class InterfaceAgenda extends JFrame {
 		button_3.setBounds(10, 379, 89, 23);
 		contentPane.add(button_3);
 		
-		JLabel label = new JLabel("ESCOLHA UMA OP\u00C7\u00C3O");
+		JLabel label = new JLabel("ESCOLHA UMA OPÇÃO");
 		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		label.setBounds(108, 11, 264, 35);
 		contentPane.add(label);
+		
+		
+		JTextArea txtrAgendamentos = new JTextArea();
+		String texto = ("Agendamentos: \n");
+		txtrAgendamentos.setBounds(10, 122, 424, 246);
+		for (Apontamento a: system.agenda) {
+			
+			texto += a.getData()+", "+a.getHora()+": " +a.getServico().getTipo()+" de "+a.getCliente().getNome()+" com "+a.getFuncionario().getNome();
+			
+		}
+		txtrAgendamentos.setText(texto);
+		contentPane.add(txtrAgendamentos);
+		
 	}
 }

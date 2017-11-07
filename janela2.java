@@ -128,26 +128,32 @@ public class janela2 extends JFrame {
 				String cpf = cx11.getText();
 				Cliente cliente = new Cliente(contato,endereco,nome,cpf);
 				
-				try {
-					
-					system.cadastraCliente(cliente);
-					
-					JOptionPane.showMessageDialog(null,"Cliente cadastrado com sucesso.");
-					
-					dispose();
-					
-				}catch(JaExisteException JEe){
-					
-					JOptionPane.showMessageDialog(null,JEe.getMessage());
-					
-				}catch(Exception e){
-					
-					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, por favor, tente novamente");
-					
+				if (cpf.length() != 11) {
+
+					JOptionPane.showMessageDialog(null, "Cpf inválido.");
+
+				} else {
+
+					try {
+
+						system.cadastraCliente(cliente);
+
+						JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.");
+
+						dispose();
+
+					} catch (JaExisteException JEe) {
+
+						JOptionPane.showMessageDialog(null, JEe.getMessage());
+
+					} catch (Exception e) {
+
+						JOptionPane.showMessageDialog(null, "Ocorreu algum erro, por favor, tente novamente");
+
+					}
+
 				}
-				
-				
-				
+
 			}
 		});
 		btnSalvar.setBounds(381, 359, 89, 23);

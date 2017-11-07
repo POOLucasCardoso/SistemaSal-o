@@ -31,6 +31,7 @@ public class janela1 extends JFrame {
 	 * Create the frame.
 	 */
 	public janela1(SistemaSalao system) {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 495, 496);
 		contentPane = new JPanel();
@@ -143,22 +144,30 @@ public class janela1 extends JFrame {
 				String tipo = txtTipo.getText();
 				Funcionario funcionario = new Funcionario(tipo,nome,cpf ,contato,endereco);
 				
-				try {
+				if (cpf.length()!=11) {
 					
-					system.cadastraFuncionario(funcionario);
+					JOptionPane.showMessageDialog(null,"Cpf inválido.");
 					
-					JOptionPane.showMessageDialog(null,"funcionario cadastrado com sucesso");
-					
-					setVisible(false);
-					
-				}catch(JaExisteException JEe) {
-					
-					JOptionPane.showMessageDialog(null, JEe.getMessage());
-					
-				}catch(Exception a) {
-					
-					JOptionPane.showMessageDialog(null,"Ocorreu algum erro, tente novamente por favor.");
-					
+				}else {
+				
+					try {
+
+						system.cadastraFuncionario(funcionario);
+
+						JOptionPane.showMessageDialog(null, "funcionario cadastrado com sucesso");
+
+						setVisible(false);
+
+					} catch (JaExisteException JEe) {
+
+						JOptionPane.showMessageDialog(null, JEe.getMessage());
+
+					} catch (Exception a) {
+
+						JOptionPane.showMessageDialog(null, "Ocorreu algum erro, tente novamente por favor.");
+
+					}
+
 				}
 				
 			}

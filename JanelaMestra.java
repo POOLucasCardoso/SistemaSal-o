@@ -77,11 +77,6 @@ public class JanelaMestra extends JFrame implements ActionListener,WindowListene
 		
 		btnAgenda = new JButton("Agenda");
 		btnAgenda.addActionListener(this);
-		
-		JLabel lblAa = new JLabel("");
-		lblAa.setIcon(new ImageIcon(JanelaMestra.class.getResource("Logo.png")));
-		lblAa.setBounds(103, 5, 261, 261);
-		contentPane.add(lblAa);
 		btnAgenda.setBounds(481, 11, 126, 39);
 		contentPane.add(btnAgenda);
 		
@@ -103,6 +98,11 @@ public class JanelaMestra extends JFrame implements ActionListener,WindowListene
 		});
 		btnSalvar.setBounds(634, 219, 89, 23);
 		contentPane.add(btnSalvar);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(JanelaMestra.class.getResource("Logo.png")));
+		lblNewLabel.setBounds(70, 5, 261, 261);
+		contentPane.add(lblNewLabel);
 	}
 
 	@Override
@@ -140,10 +140,16 @@ public class JanelaMestra extends JFrame implements ActionListener,WindowListene
 	@Override
 	public void windowClosed(WindowEvent e) {
 		try {
-		system.finaliza();
-		}catch(Exception a){}
+			system.finaliza();
+			System.exit(-1);
+		}catch(Exception a){
+			int conf = JOptionPane.showConfirmDialog(null, "Ocorreu algum erro no salvamento dos seus dados,\ndeseja sair assim mesmo?");
+			if (conf == 0) {
+				System.exit(-1);
+			}
+		}
 		
-		System.exit(-1);
+		
 		
 	}
 

@@ -3,6 +3,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -15,11 +17,8 @@ import java.awt.Font;
 public class janela4 extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
 	private JButton btnVoltar;
 
 	/**
@@ -36,16 +35,6 @@ public class janela4 extends JFrame {
 		contentPane.setLayout(null);
 		setVisible(true);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(10, 60, 225, 20);
-		contentPane.add(textField);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(244, 60, 225, 20);
-		contentPane.add(textField_1);
-		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(244, 120, 225, 20);
@@ -56,10 +45,30 @@ public class janela4 extends JFrame {
 		textField_3.setBounds(10, 120, 225, 20);
 		contentPane.add(textField_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(127, 180, 225, 20);
-		contentPane.add(textField_4);
+		JComboBox servicoBox = new JComboBox<>();
+		servicoBox.setBounds(127, 180, 225, 21);
+		servicoBox.addItem("Serviço");
+		for(String i: system.nomeServicos()) {
+			servicoBox.addItem(i);
+		}
+		contentPane.add(servicoBox);
+		
+		JComboBox clienteBox = new JComboBox<>();
+		clienteBox.setBounds(245, 60, 225, 21);
+		clienteBox.addItem("Cliente");
+		for(Cliente i: system.todosClientes()) {
+			clienteBox.addItem(i.getCPF()+" - "+i.getNome());
+		}
+		contentPane.add(clienteBox);
+		
+		JComboBox funcionarioBox = new JComboBox<>();
+		funcionarioBox.setBounds(10, 60, 225, 20);
+		funcionarioBox.addItem("Funcionário");
+		for(Funcionario i: system.todosFuncionarios()) {
+			funcionarioBox.addItem(i.getCPF()+" - "+i.getNome());
+		}
+		contentPane.add(funcionarioBox);
+		
 		
 		JButton btnSalvar = new JButton("salvar");
 		btnSalvar.addActionListener(new ActionListener() {
@@ -68,26 +77,35 @@ public class janela4 extends JFrame {
 				try {
 					
 					String data = textField_3.getText();
+					
 					String horario = textField_2.getText();
+					
+					String cpf = ((String)clienteBox.getItemAt(clienteBox.getSelectedIndex())).substring(0, 11);
 
-					String cpf = textField_1.getText();
-					
 					Cliente cliente = system.pesquisaCliente(cpf);
-					
-					cpf = textField.getText();
-					
+
+					cpf = ((String)funcionarioBox.getItemAt(funcionarioBox.getSelectedIndex())).substring(0, 11);
+
 					Funcionario funcionario = system.pesquisaFuncionario(cpf);
-					
-					String tipo = textField_4.getText();
-					
+
+					String tipo = (String)servicoBox.getItemAt(servicoBox.getSelectedIndex());
+
 					Servico servico = system.pesquisaServico(tipo);
 					
-					Apontamento apontamento = new Apontamento(data,horario,cliente,funcionario,servico);
+					if (funcionario.getTipo()!=servico.getTipo()) {
+						
+						JOptionPane.showMessageDialog(null, "Tipo do funcionário não se enquadra para o serviço");
+						
+					} else {
+
+						Apontamento apontamento = new Apontamento(data,horario,cliente,funcionario,servico);
+
+						system.agendar(apontamento);
+
+						JOptionPane.showMessageDialog(null, "Agendamento cadastrado com sussesso");
 					
-					system.agendar(apontamento);
-					
-					JOptionPane.showMessageDialog(null, "Agendamento cadastrado com sussesso");
-					
+					}
+
 				}catch(NaoExisteException NEe) {
 					
 					JOptionPane.showMessageDialog(null, NEe.getMessage());
