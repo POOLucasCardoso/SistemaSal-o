@@ -93,10 +93,22 @@ public class janela4 extends JFrame {
 					Servico servico = system.pesquisaServico(tipo);
 					
 					if (funcionario.getTipo()!=servico.getTipo()) {
-						
 						JOptionPane.showMessageDialog(null, "Tipo do funcionário não se enquadra para o serviço");
-						
-					} else {
+					} 
+					else if(data == ""){
+						JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+					}
+					else if(horario == ""){
+						JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+					}
+					else if(cpf.length() != 11){
+						JOptionPane.showMessageDialog(null, "CPF Inválido");
+					}
+					else if(tipo == ""){
+						JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+					}
+					
+					else {
 
 						Apontamento apontamento = new Apontamento(data,horario,cliente,funcionario,servico);
 

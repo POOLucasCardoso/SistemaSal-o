@@ -128,11 +128,38 @@ public class janela2 extends JFrame {
 				String cpf = cx11.getText();
 				Cliente cliente = new Cliente(contato,endereco,nome,cpf);
 				
-				if (cpf.length() != 11) {
-
-					JOptionPane.showMessageDialog(null, "Cpf inválido.");
-
-				} else {
+				if (cpf.length()!=11) {
+					JOptionPane.showMessageDialog(null,"CPF Inválido.");
+				}
+				else if(cidade == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+				}
+				else if(bairro == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+				}
+				else if(rua == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+				}
+				else if(estado == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+				}
+				else if(pais == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+				}
+				else if(nome == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+				}
+				else if(numero.length() != 11){
+					JOptionPane.showMessageDialog(null, "Numero Inválido");
+				}
+				else if(!(email.contains("@"))){
+					JOptionPane.showMessageDialog(null, "Email Inválido");
+				}
+				else if(cep.length() != 8){
+					JOptionPane.showMessageDialog(null, "CEP Inválido");
+				}
+				
+				else {
 
 					try {
 

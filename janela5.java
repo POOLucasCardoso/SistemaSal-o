@@ -75,31 +75,37 @@ public class janela5 extends JFrame {
 				String tipo = textField.getText();
 				String numero = textField_1.getText();
 				
-				try {
-					
-					double preco = Double.parseDouble(numero);
-					
-					Servico servico = new Servico(tipo,preco);
-					
-					system.cadastraServico(servico);
-
-
-				} catch (JaExisteException JEe) {
-
-					JOptionPane.showMessageDialog(null, JEe.getMessage());
-					
-				}catch (NumberFormatException NFe){
-					
-					JOptionPane.showMessageDialog(null, "Valor inválido.");
-
-				} catch (Exception a) {
-
-					JOptionPane.showMessageDialog(null, "Ocorreu algum erro, por vavor, tente novamente.");
-
+				if(tipo == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
 				}
+				else if(numero == ""){
+					JOptionPane.showMessageDialog(null, "Não deixe nada em branco");
+				}
+				else{
+					try {
+						
+						double preco = Double.parseDouble(numero);
+						
+						Servico servico = new Servico(tipo,preco);
+						
+						system.cadastraServico(servico);
+
+
+					} catch (JaExisteException JEe) {
+
+						JOptionPane.showMessageDialog(null, JEe.getMessage());
+						
+					}catch (NumberFormatException NFe){
+						
+						JOptionPane.showMessageDialog(null, "Valor inválido.");
+
+					} catch (Exception a) {
+
+						JOptionPane.showMessageDialog(null, "Ocorreu algum erro, por vavor, tente novamente.");
+
+					}
 					
-					
-					
+				}		
 					JOptionPane.showMessageDialog(null, "Servico cadastrado com sucesso.");
 				
 				}

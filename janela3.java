@@ -98,39 +98,51 @@ public class janela3 extends JFrame {
 				String tipo = textField_2.getText();
 				String numero = textField_3.getText();
 				
-				try {
-					
-					double preco = Double.parseDouble(numero);
-					
-					if(preco<0) {
+				if(nome == ""){
+					JOptionPane.showMessageDialog(null, "Nome Inválido");
+				}
+				else if(marca == ""){
+					JOptionPane.showMessageDialog(null, "Marca Inválido");
+				}
+				else if(tipo == ""){
+					JOptionPane.showMessageDialog(null, "Tipo Inválido");
+				}
+				else{
+					try {
+						
+						double preco = Double.parseDouble(numero);
+						
+						if(preco<0) {
+							
+							JOptionPane.showMessageDialog(null,"Preço inválido.");
+							
+						}else {
+						
+							Produto produto = new Produto(marca, tipo, nome, preco);
+						
+							system.cadastraProduto(produto);
+							
+							JOptionPane.showMessageDialog(null,"Produto cadastrado com sucesso");
+						
+						}
+						
+					}catch(JaExisteException JEe) {
+						
+						JOptionPane.showMessageDialog(null,JEe.getMessage());
+						
+						dispose();
+						
+					}catch(NumberFormatException NFe) {
 						
 						JOptionPane.showMessageDialog(null,"Preço inválido.");
 						
-					}else {
-					
-						Produto produto = new Produto(marca, tipo, nome, preco);
-					
-						system.cadastraProduto(produto);
+					}catch(Exception a) {
 						
-						JOptionPane.showMessageDialog(null,"Produto cadastrado com sucesso");
-					
+						JOptionPane.showMessageDialog(null,"Ocorreu um erro, por favor, tente novamente.");
+						
 					}
-					
-				}catch(JaExisteException JEe) {
-					
-					JOptionPane.showMessageDialog(null,JEe.getMessage());
-					
-					dispose();
-					
-				}catch(NumberFormatException NFe) {
-					
-					JOptionPane.showMessageDialog(null,"Preço inválido.");
-					
-				}catch(Exception a) {
-					
-					JOptionPane.showMessageDialog(null,"Ocorreu um erro, por favor, tente novamente.");
-					
 				}
+				
 				
 			}
 		});
